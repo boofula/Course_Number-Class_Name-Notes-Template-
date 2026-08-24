@@ -1,0 +1,342 @@
+\documentclass[10pt]{article}
+
+
+% ==================== BASIC FORMATTING ====================
+\setlength{\parindent}{0pt} % removes indents from paragraphs
+\setlength{\parskip}{3pt}   % adds small space between paragraphs
+% ==========================================================
+
+
+% ==================== PACKAGES ====================
+\usepackage{cancel} % allows striking out of text
+\usepackage{xfrac} % diagonal fraction
+\usepackage{float}
+\usepackage{amsfonts,amssymb,amsmath,latexsym,amsthm,mathrsfs,cases} % basic [mathabx] math symbols
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,positioning}
+\usepackage{graphicx}  % add graphics by \includegraphics
+\usepackage[margin=1in]{geometry}
+\usepackage{arydshln}
+\usepackage{etoolbox}
+\usepackage{color}
+\usepackage{listings} % to add python/MATLAB code
+\usepackage[final, nopatch=footnote]{microtype} % microtype
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{empheq} % To use left bracket and subequations at the same time
+\usepackage{titlesec}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{listings} % For creating listing environments/ code boxes
+\usepackage{xcolor} % Optional: for custom colors
+\usepackage{pdfpages} % connect a pdf to your latex document with this
+\usepackage[most]{tcolorbox} % Adds boxes into latex to emphasize different content
+% =========================================================
+
+
+
+% ==================== CODE BOXES SETUP ====================
+\lstset{
+    basicstyle=\footnotesize\ttfamily,
+    commentstyle=\color{green!60!black},
+    keywordstyle=\color{blue},
+    stringstyle=\color{purple},
+    breaklines=true,
+    captionpos=b, % Caption position at the bottom
+    % Add other desired styles
+}
+% =========================================================
+
+% =========================================================
+% MATLAB Code Box
+% =========================================================
+
+\definecolor{mlkeyword}{RGB}{0,0,255}
+\definecolor{mlcomment}{RGB}{34,139,34}
+\definecolor{mlstring}{RGB}{163,21,21}
+\definecolor{mlbg}{RGB}{250,250,250}
+\definecolor{mlframe}{RGB}{200,200,200}
+\definecolor{mlnumbers}{RGB}{120,120,120}
+
+\lstdefinestyle{matlabcustom}{
+ language=Matlab,
+ backgroundcolor=\color{mlbg},
+ basicstyle=\ttfamily\small,
+ keywordstyle=\color{mlkeyword}\bfseries,
+ commentstyle=\color{mlcomment}\itshape,
+ stringstyle=\color{mlstring},
+ numberstyle=\tiny\color{mlnumbers},
+ numbers=left,
+ stepnumber=1,
+ numbersep=8pt,
+ frame=single,
+ rulecolor=\color{mlframe},
+ breaklines=true,
+ breakatwhitespace=false,
+ showstringspaces=false,
+ tabsize=4,
+ captionpos=b
+}
+% =========================================================
+
+% ==================== LANGUAGE-SPECIFIC CODE BOXES ====================
+\lstdefinestyle{pythoncustom}{
+ language=Python,
+ backgroundcolor=\color{mlbg},
+ basicstyle=\ttfamily\small,
+ keywordstyle=\color{blue}\bfseries,
+ commentstyle=\color{green!60!black}\itshape,
+ stringstyle=\color{purple},
+ numberstyle=\tiny\color{mlnumbers},
+ numbers=left,
+ stepnumber=1,
+ numbersep=8pt,
+ frame=single,
+ rulecolor=\color{mlframe},
+ breaklines=true,
+ showstringspaces=false,
+ tabsize=4,
+ captionpos=b
+}
+
+\lstdefinestyle{javacustom}{
+ language=Java,
+ backgroundcolor=\color{mlbg},
+ basicstyle=\ttfamily\small,
+ keywordstyle=\color{blue}\bfseries,
+ commentstyle=\color{green!60!black}\itshape,
+ stringstyle=\color{purple},
+ numberstyle=\tiny\color{mlnumbers},
+ numbers=left,
+ stepnumber=1,
+ numbersep=8pt,
+ frame=single,
+ rulecolor=\color{mlframe},
+ breaklines=true,
+ showstringspaces=false,
+ tabsize=4,
+ captionpos=b
+}
+
+\lstdefinestyle{cppcustom}{
+ language=C++,
+ backgroundcolor=\color{mlbg},
+ basicstyle=\ttfamily\small,
+ keywordstyle=\color{blue}\bfseries,
+ commentstyle=\color{green!60!black}\itshape,
+ stringstyle=\color{purple},
+ numberstyle=\tiny\color{mlnumbers},
+ numbers=left,
+ stepnumber=1,
+ numbersep=8pt,
+ frame=single,
+ rulecolor=\color{mlframe},
+ breaklines=true,
+ showstringspaces=false,
+ tabsize=4,
+ captionpos=b
+}
+
+\lstdefinestyle{mathematicacustom}{
+ language=Mathematica,
+ backgroundcolor=\color{mlbg},
+ basicstyle=\ttfamily\small,
+ keywordstyle=\color{blue}\bfseries,
+ commentstyle=\color{green!60!black}\itshape,
+ stringstyle=\color{purple},
+ numberstyle=\tiny\color{mlnumbers},
+ numbers=left,
+ stepnumber=1,
+ numbersep=8pt,
+ frame=single,
+ rulecolor=\color{mlframe},
+ breaklines=true,
+ showstringspaces=false,
+ tabsize=4,
+ captionpos=b
+}
+
+
+% ==================== TEXT BOXES SETUP ====================
+
+\newtcolorbox{myboxb}{
+  breakable,
+  colback=blue!5!white,
+  colframe=blue!75!black
+}
+
+\newtcolorbox{myboxr}{
+ breakable,
+ colback=red!5!white,
+ colframe=red!75!black
+}
+
+\newtcolorbox{myboxg}{
+ breakable,
+ colback=green!5!white,
+ colframe=green!75!black
+}
+
+% ==========================================================
+
+
+% ==================== HYPERLINK SETUP ====================
+\usepackage[hidelinks]{hyperref}  %% add box and hyperlinks to equation numbers
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=blue,urlcolor=blue,
+            anchorcolor=darkblue,citecolor=darkblue}
+% =========================================================
+
+
+% ==================== SECTION TITLES ====================
+\titleformat{\section}[block]
+  {\normalfont\large\bfseries}{Lecture \thesection:}{5pt}{}
+\titleformat{name=\section,numberless}[block]
+  {\normalfont\large\bfseries}{}{0pt}{}
+% ========================================================
+
+
+% ==================== CUSTOM SECTION HEADERS ====================
+\newcommand{\homework}[1]{%
+ \refstepcounter{section}%
+ \section*{Homework \thesection: #1}%
+ \addcontentsline{toc}{section}{Homework \thesection: #1}%
+}
+
+\newcommand{\exampractice}[1]{%
+ \refstepcounter{section}%
+ \section*{Exam Practice \thesection: #1}%
+ \addcontentsline{toc}{section}{Exam Practice \thesection: #1}%
+}
+
+\newcommand{\miscnote}[1]{%
+ \refstepcounter{section}%
+ \section*{Additional Notes \thesection: #1}%
+ \addcontentsline{toc}{section}{Additional Notes \thesection: #1}%
+}
+
+% ============================================================================
+
+
+% ==================== THEOREM ENVIRONMENTS ====================
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{model}{Model}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{summary}[theorem]{Summary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{result}{Result}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{bfremark}[remark]{\bf Remark}
+\newtheorem{example}[remark]{Example}
+\newtheorem{question}{\bf Question}[section]
+\newtheorem{note}{Note}
+
+\newtheoremstyle{exercise-style}% name
+  {\topsep}% space above
+  {\topsep}% space below
+  {}% body font
+  {}% indent amount
+  {\itshape}% theorem head font
+  {}% punctuation after theorem head
+  {.5em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}.}% theorem head spec
+\theoremstyle{exercise-style}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{PCexercise}[exercise]{PC-Exercise}
+% ==============================================================
+
+
+% ==================== NUMBERING ====================
+\numberwithin{equation}{section}
+\numberwithin{theorem}{section}
+\numberwithin{remark}{section}
+% ===================================================
+
+
+%%%%%%%% new syntax by Xiang Wan %%%%%%%%%
+\newcommand{\inner}[1]{{\left\langle #1 \right\rangle}}
+\newcommand{\norm}[1]{{\left\| #1 \right\|}}
+\newcommand{\B}[1]{{\bf #1}}
+\newcommand{\BB}[1]{{\mathbb #1}}
+\newcommand{\CAL}[1]{{\mathcal #1}}
+\newcommand{\inv}[1]{{#1^{-1}}}
+\newcommand{\BC}{\mathbb{C}}
+\newcommand{\BN}{\mathbb{N}}
+\newcommand{\BP}{\mathbb{P}}
+\newcommand{\BQ}{\mathbb{Q}}
+\newcommand{\BR}{\mathbb{R}}
+\newcommand{\BZ}{\mathbb{Z}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\lt}{<}
+\newcommand{\normm}[2]{\left \lVert #1 \right \rVert_{#2}}
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Do not change the lines above %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% ------------------------------------------------------------------------------
+\begin{document}
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+\title{ \normalsize \textsc{}
+\\ [2.0cm]
+\HRule{1.5pt} \\
+\LARGE \textbf{\uppercase{MATH ***}
+\HRule{2.0pt} \\ [0.6cm] \LARGE{CLASS NAME} \vspace*{10\baselineskip}}
+}
+\date{\today}
+\author{\textbf{Author} \\
+	Will Bales \\
+	UNIVERSITY \\
+	Fall/Spring/Summer 20**}
+
+\maketitle
+\newpage
+
+%% Table of Content; only show section titles
+\setcounter{tocdepth}{2}
+\tableofcontents
+\setcounter{section}{-1}    % start with Section (lecture) 0.
+\newpage
+
+% ------------------------------------------------------------------------------
+
+
+%% notes from each lecture
+
+
+%% additional notes section
+\input{miscellaneous/_format.tex}
+
+
+%% homework from the semester
+\input{homework/homework_1.tex}
+
+% exam practive from the semester:
+
+\input{exam_practice/exam_practice_1.tex}
+
+
+\end{document}
